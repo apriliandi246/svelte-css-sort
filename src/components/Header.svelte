@@ -1,3 +1,9 @@
+<script>
+   export let isMin;
+   export let isMax;
+   export let setMenu;
+</script>
+
 <style>
    h1 {
       color: #ffffff;
@@ -50,11 +56,19 @@
 <hr />
 
 <div class="min">
-   <input type="radio" id="min" />
+   <input
+      type="radio"
+      id="min"
+      checked={isMin}
+      on:change={() => setMenu('min')} />
    <label for="min">smaller-to-bigger</label>
 </div>
 
 <div class="max">
-   <input type="radio" id="max" />
+   <input
+      type="radio"
+      id="max"
+      checked={isMax}
+      on:change={() => setMenu('max')} />
    <label for="max">bigger-to-smaller</label>
 </div>

@@ -1,5 +1,11 @@
 <script>
-   let properties = ``;
+   export let onSort;
+   export let result;
+   export let status;
+   export let onClear;
+   export let onCopy;
+   export let properties;
+   export let handleInput;
 </script>
 
 <style>
@@ -51,18 +57,6 @@
       font-family: monospace;
    }
 
-   @media (max-width: 768px) {
-      .properties-field {
-         margin-bottom: 35px;
-      }
-
-      .properties-field {
-         gap: 50px;
-         grid-template-columns: 1fr;
-         grid-template-areas: "properties" "result";
-      }
-   }
-
    .buttons {
       justify-content: center;
       margin: 0 auto;
@@ -72,20 +66,20 @@
    .buttons .btn-one,
    .buttons .btn-two,
    .buttons .btn-three {
-      transition: color 0.2s, background-color 0.2s;
-      background-color: #253341;
-      font-family: monospace;
-      box-sizing: border-box;
-      letter-spacing: 2px;
-      transition: 0.2s;
-      margin-top: 45px;
-      font-size: 20px;
-      cursor: pointer;
-      color: #ffffff;
-      padding: 10px;
-      outline: none;
       width: 300px;
       border: none;
+      padding: 10px;
+      outline: none;
+      color: #ffffff;
+      font-size: 20px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 45px;
+      letter-spacing: 2px;
+      font-family: monospace;
+      box-sizing: border-box;
+      background-color: #253341;
+      transition: color 0.2s, background-color 0.2s;
    }
 
    .buttons .btn-one:hover,
@@ -103,6 +97,16 @@
    }
 
    @media (max-width: 768px) {
+      .properties-field {
+         margin-bottom: 35px;
+      }
+
+      .properties-field {
+         gap: 50px;
+         grid-template-columns: 1fr;
+         grid-template-areas: "properties" "result";
+      }
+
       .buttons {
          align-items: center;
          flex-direction: column;
@@ -123,22 +127,39 @@
       <textarea
          cols="65"
          rows="20"
+         value={properties}
          id="properties"
          spellCheck="false"
          autoComplete="false"
          placeholder="properties...."
-         bind:value={properties} />
+         on:change={handleInput} />
    </div>
 
    <div class="input-form result">
       <!-- svelte-ignore a11y-label-has-associated-control -->
       <label>Result</label>
-      <textarea disabled cols="65" rows="20" placeholder="Result...." />
+      <textarea
+         disabled
+         cols="65"
+         rows="20"
+         value={result}
+         placeholder="Result...." />
    </div>
 </div>
 
 <div class="buttons">
-   <button class="btn-one">Sort</button>
-   <button class="btn-two"> Copy </button>
-   <button class="btn-three"> Clear </button>
+   <button
+      class="btn-one"
+      disabled={status.includes(true) && properties !== '' ? false : true}
+      on:click={onSort}>Sort</button>
+
+   <button
+      class="btn-two"
+      on:click={onCopy}
+      disabled={result === '' ? true : false}>Copy</button>
+
+   <button
+      class="btn-three"
+      on:click={onClear}
+      disabled={result === '' ? true : false}>Clear</button>
 </div>
