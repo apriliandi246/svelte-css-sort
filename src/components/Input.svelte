@@ -1,11 +1,16 @@
 <script>
-   export let onSort;
+   import { createEventDispatcher } from "svelte";
+
    export let result;
    export let status;
-   export let onClear;
    export let onCopy;
-   export let properties;
-   export let handleInput;
+
+   let properties;
+   const dispatch = createEventDispatcher();
+
+   function handleClick() {
+      dispatch("sortProperties", properties);
+   }
 </script>
 
 <style>
@@ -15,12 +20,6 @@
       margin: 50px 0 15px 0;
       grid-template-columns: 1fr 1fr;
       grid-template-areas: "properties result";
-   }
-
-   .input-form label {
-      font-family: monospace;
-      font-size: 20px;
-      color: #ffffff;
    }
 
    .input-form textarea {
@@ -64,8 +63,7 @@
    }
 
    .buttons .btn-one,
-   .buttons .btn-two,
-   .buttons .btn-three {
+   .buttons .btn-two {
       width: 300px;
       border: none;
       padding: 10px;
@@ -83,16 +81,14 @@
    }
 
    .buttons .btn-one:hover,
-   .buttons .btn-two:hover,
-   .buttons .btn-three:hover {
+   .buttons .btn-two:hover {
       background-color: #192734;
       box-sizing: border-box;
       color: #87cefa;
    }
 
    .buttons .btn-one:disabled,
-   .buttons .btn-two:disabled,
-   .buttons .btn-three:disabled {
+   .buttons .btn-two:disabled {
       pointer-events: none;
    }
 
@@ -113,8 +109,7 @@
       }
 
       .buttons .btn-one,
-      .buttons .btn-two,
-      .buttons .btn-three {
+      .buttons .btn-two {
          margin-top: 30px;
       }
    }
@@ -122,22 +117,16 @@
 
 <div class="properties-field">
    <div class="input-form properties">
-      <label for="properties">Properties</label>
-
       <textarea
          cols="65"
          rows="20"
-         value={properties}
-         id="properties"
          spellCheck="false"
          autoComplete="false"
-         placeholder="properties...."
-         on:change={handleInput} />
+         placeholder="Properties...."
+         bind:value={properties} />
    </div>
 
    <div class="input-form result">
-      <!-- svelte-ignore a11y-label-has-associated-control -->
-      <label>Result</label>
       <textarea
          disabled
          cols="65"
@@ -151,15 +140,10 @@
    <button
       class="btn-one"
       disabled={status.includes(true) && properties !== '' ? false : true}
-      on:click={onSort}>Sort</button>
+      on:click={handleClick}>Sort</button>
 
    <button
       class="btn-two"
       on:click={onCopy}
       disabled={result === '' ? true : false}>Copy</button>
-
-   <button
-      class="btn-three"
-      on:click={onClear}
-      disabled={result === '' ? true : false}>Clear</button>
 </div>

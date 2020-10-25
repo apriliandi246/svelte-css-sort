@@ -2,11 +2,9 @@
    import Header from "./components/Header.svelte";
    import InputField from "./components/Input.svelte";
 
+   let result = "";
    let isMin = false;
    let isMax = false;
-
-   let result = "";
-   let properties = "";
 
    function setMenu(menu) {
       if (menu === "min") {
@@ -18,12 +16,8 @@
       }
    }
 
-   function handleInput(e) {
-      properties = e.target.value;
-   }
-
-   function onSort() {
-      result = properties
+   function sortProperties(event) {
+      result = event.detail
          .split(";")
          .filter((property) => property.toString().trim() !== "")
          .map((property) => property.toString().trim() + ";")
@@ -37,13 +31,6 @@
       navigator.clipboard.writeText(result);
       alert("Copied");
    }
-
-   function onClear() {
-      isMin = false;
-      isMax = false;
-      result = "";
-      properties = "";
-   }
 </script>
 
 <style>
@@ -55,13 +42,9 @@
 
 <div class="container">
    <Header {setMenu} {isMin} {isMax} />
-
    <InputField
       {result}
       {onCopy}
-      {onSort}
-      {onClear}
-      {properties}
-      {handleInput}
-      status={[isMin, isMax]} />
+      status={[isMin, isMax]}
+      on:sortProperties={sortProperties} />
 </div>

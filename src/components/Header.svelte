@@ -52,13 +52,14 @@
    }
 </style>
 
-<h1>Sort-it</h1>
+<h1>Sort-It</h1>
+
 <hr />
 
 <div class="min">
    <input
-      type="radio"
       id="min"
+      type="radio"
       checked={isMin}
       on:change={() => setMenu('min')} />
    <label for="min">smaller-to-bigger</label>
@@ -66,8 +67,8 @@
 
 <div class="max">
    <input
-      type="radio"
       id="max"
+      type="radio"
       checked={isMax}
       on:change={() => setMenu('max')} />
    <label for="max">bigger-to-smaller</label>
