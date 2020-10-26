@@ -2,6 +2,10 @@
 
 <br />
 
+#### Re-implement my sort-it web with Svelte
+
+<br />
+
 <h3>From this :</h3>
 
 ```css
@@ -68,6 +72,3 @@
    width: 100%;
 }
 ```
-
-
-### Re-implement my sort-it web with Svelte

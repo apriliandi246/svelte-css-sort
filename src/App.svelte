@@ -1,6 +1,6 @@
 <script>
    import Header from "./components/Header.svelte";
-   import InputField from "./components/Input.svelte";
+   import FormArea from "./components/FormArea.svelte";
 
    let result = "";
    let isMin = false;
@@ -10,9 +10,11 @@
       if (menu === "min") {
          isMin = true;
          isMax = false;
-      } else {
+      } else if (menu === "max") {
          isMin = false;
          isMax = true;
+      } else {
+         return;
       }
    }
 
@@ -42,7 +44,7 @@
 
 <div class="container">
    <Header {setMenu} {isMin} {isMax} />
-   <InputField
+   <FormArea
       {result}
       {onCopy}
       status={[isMin, isMax]}
