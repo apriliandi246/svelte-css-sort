@@ -4,12 +4,48 @@
    export let result;
    export let status;
    export let onCopy;
+   export let onClear;
 
    let properties;
-   const dispatch = createEventDispatcher();
+   let sorting = createEventDispatcher();
 
-   function handleClick() {
-      dispatch("sortProperties", properties);
+   const placeHolder1 = `      width: 100%;
+      outline: none; 
+      background-color: #253341;
+      color: #f5f5f5;
+      display: block;
+      transition: background-color 0.2s;
+      font-size: 18px;
+      margin-top: 17px;
+      white-space: pre-line;
+      padding: 15px;
+      border: 1px solid #38444d
+      font-family: monospace;
+      box-sizing: border-box;
+      resize: none;`;
+
+   const placeholder2 = `width: 100%;
+      resize: none;
+      outline: none;
+      padding: 15px;
+      color: #f5f5f5;
+      display: block;
+      font-size: 18px;
+      margin-top: 17px;
+      white-space: pre-line;
+      font-family: monospace;
+      box-sizing: border-box;
+      background-color: #253341;
+      border: 1px solid #38444d;
+      transition: background-color 0.2s;`;
+
+   function onSort() {
+      sorting("sortProperties", properties);
+   }
+
+   function handleClear() {
+      onClear();
+      properties = "";
    }
 </script>
 
@@ -17,7 +53,7 @@
    .properties-field {
       gap: 50px;
       display: grid;
-      margin: 50px 0 15px 0;
+      margin: 30px 0 15px 0;
       grid-template-columns: 1fr 1fr;
       grid-template-areas: "properties result";
    }
@@ -122,7 +158,7 @@
          rows="20"
          spellCheck="false"
          autoComplete="false"
-         placeholder="Properties...."
+         placeholder={placeHolder1}
          bind:value={properties} />
    </div>
 
@@ -132,7 +168,7 @@
          cols="65"
          rows="20"
          value={result}
-         placeholder="Result...." />
+         placeholder={placeholder2} />
    </div>
 </div>
 
@@ -140,10 +176,12 @@
    <button
       class="btn-one"
       disabled={status.includes(true) && properties !== '' ? false : true}
-      on:click={handleClick}>Sort</button>
+      on:click={onSort}>Sort</button>
 
    <button
       class="btn-two"
       on:click={onCopy}
       disabled={result === '' ? true : false}>Copy</button>
+
+   <button class="btn-two" on:click={handleClear}>Clear</button>
 </div>

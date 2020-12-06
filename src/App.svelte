@@ -33,12 +33,18 @@
       navigator.clipboard.writeText(result);
       alert("Copied");
    }
+
+   function onClear() {
+      isMin = false;
+      isMax = false;
+      result = "";
+   }
 </script>
 
 <style>
    .container {
       width: 90%;
-      margin: 60px auto;
+      margin: 40px auto;
    }
 </style>
 
@@ -47,6 +53,7 @@
    <FormArea
       {result}
       {onCopy}
+      {onClear}
       status={[isMin, isMax]}
       on:sortProperties={sortProperties} />
 </div>

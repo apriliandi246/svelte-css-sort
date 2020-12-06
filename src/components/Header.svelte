@@ -15,9 +15,20 @@
       font-family: monospace;
    }
 
+   h2 {
+      color: #ff4500;
+      font-size: 25px;
+      margin-top: 50px;
+      line-height: 35px;
+      text-align: center;
+      font-weight: bolder;
+      letter-spacing: 1px;
+      font-family: monospace;
+   }
+
    hr {
       width: 265px;
-      margin-bottom: 65px;
+      margin-bottom: 45px;
       border: 3px dashed #f5f5f5;
    }
 
@@ -52,7 +63,7 @@
    }
 </style>
 
-<h1>Sort-It</h1>
+<h1>CSS-sort</h1>
 
 <hr />
 
@@ -73,3 +84,5 @@
       on:change={() => setMenu('max')} />
    <label for="max">bigger-to-smaller</label>
 </div>
+
+<h2>Css properties must be valid!!</h2>
