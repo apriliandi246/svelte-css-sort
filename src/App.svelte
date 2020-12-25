@@ -1,8 +1,9 @@
 <script>
+   import { parse, generate } from "css-tree";
    import Header from "./components/Header.svelte";
    import FormArea from "./components/FormArea.svelte";
 
-   let result = "";
+   let sortedCss = "";
    let isMin = false;
    let isMax = false;
 
@@ -19,25 +20,43 @@
    }
 
    function sortProperties(event) {
-      result = event.detail
-         .split(";")
-         .filter((property) => property.toString().trim() !== "")
-         .map((property) => property.toString().trim() + ";")
-         .sort((a, b) =>
-            isMin == true ? a.length - b.length : b.length - a.length
-         )
-         .join("\n");
+      let finalResult = "";
+      const ast = parse(event.detail);
+      const result = generate(ast).split("}");
+
+      result.pop();
+
+      for (let index = 0; index < result.length; index++) {
+         const cssNode = result[index].split("{");
+         const cssSelector = cssNode[0].trim();
+
+         const cssProperties = cssNode[1]
+            .trim()
+            .split(";")
+            .filter((property) => property.trim() !== "")
+            .map((property) => property.trim() + ";")
+            .sort((a, b) =>
+               isMin === true ? a.length - b.length : b.length - a.length
+            )
+            .join("\n");
+
+         finalResult += `${cssSelector} {\n ${cssProperties} \n}${
+            index === result.length - 1 ? "\n" : "\n\n"
+         }`;
+      }
+
+      sortedCss = finalResult;
    }
 
    function onCopy() {
-      navigator.clipboard.writeText(result);
+      navigator.clipboard.writeText(sortedCss);
       alert("Copied");
    }
 
    function onClear() {
       isMin = false;
       isMax = false;
-      result = "";
+      sortedCss = "";
    }
 </script>
 
@@ -51,7 +70,7 @@
 <div class="container">
    <Header {setMenu} {isMin} {isMax} />
    <FormArea
-      {result}
+      {sortedCss}
       {onCopy}
       {onClear}
       status={[isMin, isMax]}

@@ -1,7 +1,7 @@
 <script>
    import { createEventDispatcher } from "svelte";
 
-   export let result;
+   export let sortedCss;
    export let status;
    export let onCopy;
    export let onClear;
@@ -167,7 +167,7 @@
          disabled
          cols="65"
          rows="20"
-         value={result}
+         value={sortedCss}
          placeholder={placeholder2} />
    </div>
 </div>
@@ -181,7 +181,7 @@
    <button
       class="btn-two"
       on:click={onCopy}
-      disabled={result === '' ? true : false}>Copy</button>
+      disabled={sortedCss === '' ? true : false}>Copy</button>
 
    <button class="btn-two" on:click={handleClear}>Clear</button>
 </div>
