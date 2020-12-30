@@ -1,4 +1,5 @@
-export let placeHolder1 = `      width: 100%;
+export let placeHolder1 = `.component {
+      width: 100%;
       outline: none; 
       background-color: #253341;
       color: #f5f5f5;
@@ -11,9 +12,11 @@ export let placeHolder1 = `      width: 100%;
       border: 1px solid #38444d
       font-family: monospace;
       box-sizing: border-box;
-      resize: none;`;
+      resize: none;
+}`;
 
-export let placeholder2 = `width: 100%;
+export let placeholder2 = `.component {
+      width: 100%;
       resize: none;
       outline: none;
       padding: 15px;
@@ -26,4 +29,5 @@ export let placeholder2 = `width: 100%;
       box-sizing: border-box;
       background-color: #253341;
       border: 1px solid #38444d;
-      transition: background-color 0.2s;`;
+      transition: background-color 0.2s;
+}`;

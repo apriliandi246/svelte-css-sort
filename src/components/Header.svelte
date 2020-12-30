@@ -85,4 +85,4 @@
    <label for="max">bigger-to-smaller</label>
 </div>
 
-<h2>Css properties must be valid!!</h2>
+<h2>Must be valid css code!</h2>
