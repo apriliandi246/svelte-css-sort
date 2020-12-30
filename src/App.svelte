@@ -69,10 +69,11 @@
 
 <div class="container">
    <Header {setMenu} {isMin} {isMax} />
+
    <FormArea
-      {sortedCss}
       {onCopy}
       {onClear}
+      {sortedCss}
       status={[isMin, isMax]}
       on:sortProperties={sortProperties} />
 </div>

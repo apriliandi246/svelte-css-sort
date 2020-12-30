@@ -1,43 +1,14 @@
 <script>
+   import { placeHolder1, placeholder2 } from "../placeholder";
    import { createEventDispatcher } from "svelte";
 
-   export let sortedCss;
    export let status;
    export let onCopy;
    export let onClear;
+   export let sortedCss;
 
    let properties;
    let sorting = createEventDispatcher();
-
-   const placeHolder1 = `      width: 100%;
-      outline: none; 
-      background-color: #253341;
-      color: #f5f5f5;
-      display: block;
-      transition: background-color 0.2s;
-      font-size: 18px;
-      margin-top: 17px;
-      white-space: pre-line;
-      padding: 15px;
-      border: 1px solid #38444d
-      font-family: monospace;
-      box-sizing: border-box;
-      resize: none;`;
-
-   const placeholder2 = `width: 100%;
-      resize: none;
-      outline: none;
-      padding: 15px;
-      color: #f5f5f5;
-      display: block;
-      font-size: 18px;
-      margin-top: 17px;
-      white-space: pre-line;
-      font-family: monospace;
-      box-sizing: border-box;
-      background-color: #253341;
-      border: 1px solid #38444d;
-      transition: background-color 0.2s;`;
 
    function onSort() {
       sorting("sortProperties", properties);
@@ -158,8 +129,8 @@
          rows="20"
          spellCheck="false"
          autoComplete="false"
-         placeholder={placeHolder1}
-         bind:value={properties} />
+         bind:value={properties}
+         placeholder={placeHolder1} />
    </div>
 
    <div class="input-form result">
@@ -175,8 +146,8 @@
 <div class="buttons">
    <button
       class="btn-one"
-      disabled={status.includes(true) && properties !== '' ? false : true}
-      on:click={onSort}>Sort</button>
+      on:click={onSort}
+      disabled={status.includes(true) && properties !== '' ? false : true}>Sort</button>
 
    <button
       class="btn-two"
