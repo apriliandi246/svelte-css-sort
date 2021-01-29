@@ -4,6 +4,32 @@
    export let setMenu;
 </script>
 
+<h1>CSS-sort</h1>
+
+<hr />
+
+<div class="min">
+   <input
+      id="min"
+      type="radio"
+      checked={isMin}
+      on:change={() => setMenu("min")}
+   />
+   <label for="min">smaller-to-bigger</label>
+</div>
+
+<div class="max">
+   <input
+      id="max"
+      type="radio"
+      checked={isMax}
+      on:change={() => setMenu("max")}
+   />
+   <label for="max">bigger-to-smaller</label>
+</div>
+
+<h2>Must be valid css code!</h2>
+
 <style>
    h1 {
       color: #ffffff;
@@ -62,27 +88,3 @@
       margin-bottom: 36px;
    }
 </style>
-
-<h1>CSS-sort</h1>
-
-<hr />
-
-<div class="min">
-   <input
-      id="min"
-      type="radio"
-      checked={isMin}
-      on:change={() => setMenu('min')} />
-   <label for="min">smaller-to-bigger</label>
-</div>
-
-<div class="max">
-   <input
-      id="max"
-      type="radio"
-      checked={isMax}
-      on:change={() => setMenu('max')} />
-   <label for="max">bigger-to-smaller</label>
-</div>
-
-<h2>Must be valid css code!</h2>

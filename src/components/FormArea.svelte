@@ -20,6 +20,46 @@
    }
 </script>
 
+<div class="properties-field">
+   <div class="input-form properties">
+      <textarea
+         cols="65"
+         rows="20"
+         spellCheck="false"
+         autoComplete="false"
+         bind:value={properties}
+         placeholder={placeHolder1}
+      />
+   </div>
+
+   <div class="input-form result">
+      <textarea
+         disabled
+         cols="65"
+         rows="20"
+         value={sortedCss}
+         placeholder={placeholder2}
+      />
+   </div>
+</div>
+
+<div class="buttons">
+   <button
+      class="btn-one"
+      on:click={onSort}
+      disabled={status.includes(true) && properties !== "" ? false : true}
+      >Sort</button
+   >
+
+   <button
+      class="btn-two"
+      on:click={onCopy}
+      disabled={sortedCss === "" ? true : false}>Copy</button
+   >
+
+   <button class="btn-two" on:click={handleClear}>Clear</button>
+</div>
+
 <style>
    .properties-field {
       gap: 50px;
@@ -121,38 +161,3 @@
       }
    }
 </style>
-
-<div class="properties-field">
-   <div class="input-form properties">
-      <textarea
-         cols="65"
-         rows="20"
-         spellCheck="false"
-         autoComplete="false"
-         bind:value={properties}
-         placeholder={placeHolder1} />
-   </div>
-
-   <div class="input-form result">
-      <textarea
-         disabled
-         cols="65"
-         rows="20"
-         value={sortedCss}
-         placeholder={placeholder2} />
-   </div>
-</div>
-
-<div class="buttons">
-   <button
-      class="btn-one"
-      on:click={onSort}
-      disabled={status.includes(true) && properties !== '' ? false : true}>Sort</button>
-
-   <button
-      class="btn-two"
-      on:click={onCopy}
-      disabled={sortedCss === '' ? true : false}>Copy</button>
-
-   <button class="btn-two" on:click={handleClear}>Clear</button>
-</div>

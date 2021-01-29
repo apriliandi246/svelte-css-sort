@@ -11,17 +11,17 @@
       if (menu === "min") {
          isMin = true;
          isMax = false;
-      } else if (menu === "max") {
+      }
+
+      if (menu === "max") {
          isMin = false;
          isMax = true;
-      } else {
-         return;
       }
    }
 
    function sortProperties(event) {
       let finalResult = "";
-      const ast = parse(event.detail);
+      const ast = parse(event.detail, { parseValue: false });
       const result = generate(ast).split("}");
 
       result.pop();
@@ -60,13 +60,6 @@
    }
 </script>
 
-<style>
-   .container {
-      width: 90%;
-      margin: 40px auto;
-   }
-</style>
-
 <div class="container">
    <Header {setMenu} {isMin} {isMax} />
 
@@ -75,5 +68,13 @@
       {onClear}
       {sortedCss}
       status={[isMin, isMax]}
-      on:sortProperties={sortProperties} />
+      on:sortProperties={sortProperties}
+   />
 </div>
+
+<style>
+   .container {
+      width: 90%;
+      margin: 40px auto;
+   }
+</style>
