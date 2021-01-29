@@ -1,12 +1,8 @@
-<h1 align="center">sort-it</h1>
+<h1 align="center">📶 CSS sort</h1>
 
 <br />
 
-#### Re-implement my sort-it web with Svelte
-
-<br />
-
-<h3>From this :</h3>
+<h3>Before :</h3>
 
 ```css
 .component {
@@ -29,7 +25,7 @@
 
 <br />
 
-<h3>To this (smaller to bigger) :</h3>
+<h3>Smaller to Bigger :</h3>
 
 ```css
 .component {
@@ -52,7 +48,7 @@
 
 <br />
 
-<h3>Or this (bigger to smaller) :</h3>
+<h3>Bigger to Smaller :</h3>
 
 ```css
 .component {
@@ -73,4 +69,6 @@
 }
 ```
 
-### Vscode Extension : [vscode extension](https://marketplace.visualstudio.com/items?itemName=apriliandi246.css-sort)
+<br />
+
+### You can use Vscode extension too : [vscode extension](https://marketplace.visualstudio.com/items?itemName=apriliandi246.css-sort)
